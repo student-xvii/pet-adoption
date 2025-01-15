@@ -11,7 +11,7 @@ async function start() {
   document.querySelector("#ourTemperature").textContent = ourTemperature;
 }
 
-//start();
+start();
 
 async function getPetsData() {
   const petsPromise = await fetch(
