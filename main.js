@@ -18,9 +18,9 @@ async function getPetsData() {
     "https://learnwebcode.github.io/bootcamp-pet-data/pets.json"
   );
   const petsData = await petsPromise.json();
-  console.log(petsData);
   petsData?.forEach((pet) => {
     const clone = template.content.cloneNode(true);
+    clone.querySelector(".pet-card").dataset.species = pet.species;
     clone.querySelector("h3").textContent = pet.name;
     clone.querySelector(".pet-description").textContent = pet.description;
     clone.querySelector(".pet-age").textContent = createAgeText(pet.birthYear);
@@ -58,14 +58,22 @@ allButtons.forEach((button) => {
   button.addEventListener("click", handleFilterButtonClick);
 });
 
-
 function handleFilterButtonClick(e) {
   e.preventDefault();
   e.stopPropagation();
 
   //remove active class from any and all buttons
-  allButtons.forEach(b=> b.classList.remove('active'));
+  allButtons.forEach((b) => b.classList.remove("active"));
   // add active class to the specific button that just got clicked
- e.target.classList.add('active');
+  e.target.classList.add("active");
   // actually filter the pets down below
+  const currentFilter = e.target.dataset.filter;
+
+  document.querySelectorAll(".pet-card").forEach((card) => {
+    if (currentFilter === card.dataset.species || currentFilter === "all") {
+      card.style.display = "grid";
+    } else {
+      card.style.display = "none";
+    }
+  });
 }
