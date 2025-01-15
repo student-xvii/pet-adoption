@@ -21,11 +21,29 @@ async function getPetsData() {
   console.log(petsData);
   petsData?.forEach((pet) => {
     const clone = template.content.cloneNode(true);
-    clone.querySelector('h3').textContent = pet.name;
+    clone.querySelector("h3").textContent = pet.name;
+    clone.querySelector(".pet-description").textContent = pet.description;
+    clone.querySelector(".pet-age").textContent = createAgeText(pet.birthYear);
+    clone.querySelector(".pet-card-photo img").src = pet.photo;
+    clone.querySelector(
+      ".pet-card-photo img"
+    ).alt = `A ${pet.species} name ${pet.name}`;
     wrapper.appendChild(clone);
   });
 
-  document.querySelector('.list-of-pets').appendChild(wrapper);
+  document.querySelector(".list-of-pets").appendChild(wrapper);
 }
 
 getPetsData();
+
+function createAgeText(birthYear) {
+  const currentYear = new Date().getFullYear();
+  const age = currentYear - birthYear;
+  if (age === 1) {
+    return "1 year old";
+  }
+  if (age == 0) {
+    return "less than a year old";
+  }
+  return `${age} years old`;
+}
