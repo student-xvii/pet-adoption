@@ -5,7 +5,7 @@ html {
   background-color: white;
 }
 
-html{
+html {
   scroll-behavior: smooth;
 }
 
@@ -155,15 +155,25 @@ body {
   font-size: 1.15rem;
 }
 
+
 .pet-filter button {
   background-color: transparent;
   border: none;
   font-family: 'Source Sans 3', serif;
   font-size: 1.15rem;
   color: #9F9F9F;
+  cursor: pointer;
 }
 
+.pet-filter button:hover {
+  color: #7d7d7d;
+}
 
+.pet-filter .active,
+.pet-filter .active:hover {
+  color: #475AFF;
+  text-decoration: underline;
+}
 
 .list-of-pets {
   display: grid;
@@ -264,9 +274,11 @@ body {
   .list-of-pets {
     row-gap: 28px;
   }
-.pet-card {
-  grid-template-columns: 165px 1fr;
-}
+
+  .pet-card {
+    grid-template-columns: 165px 1fr;
+  }
+
   .pet-card-text {
     padding: 21px 29px;
   }
